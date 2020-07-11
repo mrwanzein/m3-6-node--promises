@@ -10,16 +10,14 @@ const getDistance = (pos1, pos2) => {
 };
 
 const getDistanceFromIss = (address) => {
-  let pos1;
-  let pos2;
 
-  getPositionFromAddress(address).then(res => {
-    pos1 = res;
-    getIssPosition().then(res => {
-      pos2 = res;
+  getPositionFromAddress(address).then(pos1 => {
+    return getIssPosition().then(pos2 => {
       console.log(getDistance(pos1, pos2));
     });
   })
+  .catch(err => console.log(err));
+
 };
 
 getDistanceFromIss('1455 Boulevard de Maisonneuve O, Montréal, QC H3G 1M8');
